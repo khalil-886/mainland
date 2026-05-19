@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>菜鸟驿站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:#f5f5f5;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.page{display:none;width:100%;max-width:420px;margin:0 auto;padding:20px}
+.page.active{display:block}
+
+/* ===== 第一页 ===== */
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.card-header{background:linear-gradient(135deg,#ff6b35,#f7931e);padding:24px 20px;text-align:center;position:relative}
+.card-header .logo{font-size:28px;margin-bottom:4px}
+.card-header .brand{color:#fff;font-size:20px;font-weight:bold;letter-spacing:2px}
+.card-header .sub{color:rgba(255,255,255,.85);font-size:12px;margin-top:4px}
+.card-body{padding:24px 20px}
+.greeting{font-size:15px;color:#333;margin-bottom:12px;line-height:1.6}
+.greeting b{color:#ff6b35}
+.item-box{background:#fff8f0;border:1px dashed #ff6b35;border-radius:12px;padding:16px;margin:16px 0;text-align:center}
+.item-box .icon{font-size:48px;margin-bottom:6px}
+.item-box .name{font-size:20px;font-weight:bold;color:#ff6b35;margin-bottom:2px}
+.item-box .count{font-size:14px;color:#999}
+.code-box{background:#f5f5f5;border-radius:10px;padding:14px;text-align:center;margin:16px 0}
+.code-box .label{font-size:12px;color:#999;margin-bottom:4px}
+.code-box .code{font-size:28px;font-weight:bold;color:#333;letter-spacing:3px}
+.kiss-hint{color:#ff6b35;font-size:14px;text-align:center;margin:12px 0;font-weight:bold;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.card-footer{padding:0 20px 24px}
+.btn{display:block;width:100%;padding:14px;border:none;border-radius:12px;font-size:17px;font-weight:bold;cursor:pointer;text-align:center;transition:.2s;letter-spacing:1px}
+.btn-primary{background:linear-gradient(135deg,#ff6b35,#f7931e);color:#fff}
+.btn-primary:active{transform:scale(.97);opacity:.9}
+
+/* ===== 第二页 ===== */
+.video-page{text-align:center;background:#000;border-radius:16px;overflow:hidden;position:relative}
+.video-page .top-bar{background:#111;color:#fff;padding:14px;font-size:15px;font-weight:bold;display:flex;align-items:center;justify-content:center;gap:8px}
+.video-container{position:relative;width:100%;background:#000;display:flex;align-items:center;justify-content:center;min-height:300px}
+.video-container iframe{width:100%;height:70vh;max-height:600px;border:none}
+.video-container .fallback{color:#fff;text-align:center;padding:40px 20px}
+.video-container .fallback a{color:#ff6b35;font-size:18px;text-decoration:none;display:inline-block;margin-top:16px;padding:12px 24px;border:2px solid #ff6b35;border-radius:10px}
+.emoji-big{font-size:60px}
+</style>
+</head>
+<body>
+
+<!-- ===== 第一页：取件通知 ===== -->
+<div class="page active" id="page1">
+    <div class="card">
+        <div class="card-header">
+            <div class="logo"></div>
+            <div class="brand">菜鸟驿站</div>
+            <div class="sub">CAINIAO STATION</div>
+        </div>
+        <div class="card-body">
+            <div class="greeting">
+                尊敬的 <b>陈彦希</b> 先生，
+            </div>
+            <div class="greeting">
+                您有 <b>十个奶龙</b> 已到达菜鸟驿站，等待与您<b>激情舌吻</b>。
+            </div>
+            <div class="item-box">
+                <div class="icon"></div>
+                <div class="name">奶龙 ×10</div>
+                <div class="count">包裹重量：约10吨可爱</div>
+            </div>
+            <div class="greeting">
+                请您凭借取件码 <b>8-10-9100</b> 到菜鸟驿站与奶龙激情舌吻，到店领取香吻一枚。
+            </div>
+            <div class="code-box">
+                <div class="label">取件码</div>
+                <div class="code">8-10-9100</div>
+            </div>
+            <div class="kiss-hint">💋 您的香吻正在驿站等您 💋</div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary" onclick="goVideo()">确认收货，领取香吻 💋</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== 第二页：视频 ===== -->
+<div class="page" id="page2">
+    <div class="video-page">
+        <div class="top-bar">奶龙大笑纯享版</div>
+        <div class="video-container" id="videoContainer">
+            <div class="fallback">
+                <div class="emoji-big"></div>
+                <p style="color:#fff;margin-top:16px;font-size:16px">奶龙正在赶来...</p>
+                <a href="https://v.douyin.com/c3GFWC0YGU4/" target="_blank" id="douyinLink">
+                    点击播放奶龙大笑 📺
+                </a>
+                <p style="color:#999;font-size:12px;margin-top:12px">（将跳转至抖音观看）</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function goVideo() {
+    document.getElementById('page1').classList.remove('active');
+    document.getElementById('page2').classList.add('active');
+    // 自动尝试跳转抖音
+    setTimeout(() => {
+        window.location.href = 'https://v.douyin.com/c3GFWC0YGU4/';
+    }, 300);
+}
+
+// 点击页面任意位置也跳转
+document.getElementById('videoContainer').addEventListener('click', function() {
+    window.location.href = 'https://v.douyin.com/c3GFWC0YGU4/';
+});
+</script>
+</body>
+</html>
